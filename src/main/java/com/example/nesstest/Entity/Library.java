@@ -13,7 +13,7 @@ public class Library {
     static int number_of_books_added = 0;
     private ArrayList<Book> bookList;
 
-    public Book addBookToList(Book book){
+    public void addBookToList(Book book){
         number_of_books_added++;
         book.setBook_id(number_of_books_added);
 
@@ -24,6 +24,5 @@ public class Library {
         bookList.add(book);
         }
 
-        return book;
     }
 }

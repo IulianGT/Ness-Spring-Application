@@ -37,4 +37,9 @@ public class BookController {
     public Book findBookByTitle(@PathVariable String title){
         return bookService.findBookByTitle(title);
     }
+
+    @PutMapping("/updateBook/{id}")
+    public Book updateBook(@PathVariable int id, @RequestBody Book book){
+        return bookService.updateBook(id,book);
+    }
 }
