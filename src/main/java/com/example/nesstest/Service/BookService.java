@@ -7,7 +7,9 @@ import com.example.nesstest.exception.CustomRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -99,6 +101,17 @@ public class BookService {
 
         library.addBookToList(book);
         return book;
+    }
 
+    public List<Book> showBooksSortedByAuthorAndTitle(){
+        if(library.getBookList().isEmpty()){
+            throw new CustomRequestException("Empty list.");
+        }
+        ArrayList<Book> sortedBooks =new ArrayList<>(library.getBookList().stream()
+                .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
+                .collect(Collectors.toList()));
+
+        library.setBookList(sortedBooks);
+        return library.getBookList();
     }
 }

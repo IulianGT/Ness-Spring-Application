@@ -5,6 +5,7 @@ import com.example.nesstest.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController @RequestMapping({"/books"})
@@ -41,5 +42,10 @@ public class BookController {
     @PutMapping("/updateBook/{id}")
     public Book updateBook(@PathVariable int id, @RequestBody Book book){
         return bookService.updateBook(id,book);
+    }
+
+    @GetMapping("/getSortedBooks")
+    public List<Book> getSortedBooks(){
+        return bookService.showBooksSortedByAuthorAndTitle();
     }
 }
